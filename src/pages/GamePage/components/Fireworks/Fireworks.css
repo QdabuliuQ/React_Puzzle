@@ -1,0 +1,42 @@
+#Fireworks canvas {
+  width: 100vw;
+  height: 100vh;
+}
+#Fireworks .successIcon {
+  position: absolute;
+  z-index: 2;
+  width: 60vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  transition: 1.5s all linear;
+}
+#Fireworks .successBglight {
+  position: absolute;
+  width: 140vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  transform-origin: left top;
+}
+#Fireworks .showSuccessIcon {
+  transform: translate(-50%, -50%) scale(1) !important;
+}
+#Fireworks .showSuccessBgLight {
+  transform: translate(-50%, -50%) scale(1);
+  animation: LightAnimation 6s linear infinite;
+}
+@keyframes LightAnimation {
+  0% {
+    width: 100vw;
+    transform: rotate(0) translate(-50%, -50%) scale(1);
+  }
+  50% {
+    width: 150vw;
+    transform: rotate(180deg) translate(-50%, -50%) scale(1);
+  }
+  100% {
+    width: 100vw;
+    transform: rotate(360deg) translate(-50%, -50%) scale(1);
+  }
+}

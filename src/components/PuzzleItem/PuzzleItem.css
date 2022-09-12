@@ -1,0 +1,17 @@
+.puzzleItem {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  transition: 0.2s all linear;
+}
+.puzzleItem img {
+  width: 100%;
+}
+.activePuzzleItem {
+  border-radius: 8px;
+  transform-origin: center;
+  transform: scale(1.2);
+  overflow: hidden;
+  z-index: 5;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+}

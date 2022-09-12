@@ -1,0 +1,28 @@
+#GamePage {
+  max-width: 100vw;
+  max-height: 100vh;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+#GamePage .bgImageContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#GamePage .bgImageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#GamePage .logoContainer {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  margin-top: 10vh;
+}
+#GamePage .logoContainer img {
+  width: 100%;
+  position: relative;
+  left: 5px;
+}

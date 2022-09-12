@@ -1,0 +1,11 @@
+#OpeList {
+  margin-top: 5vh;
+  position: relative;
+  padding: 0 14px;
+  height: 7vh;
+  display: flex;
+  justify-content: space-around;
+}
+#OpeList img {
+  height: 100%;
+}
