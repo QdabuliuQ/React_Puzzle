@@ -19,10 +19,25 @@
   position: relative;
   z-index: 4;
   text-align: center;
-  margin-top: 10vh;
+  margin-top: 5vh;
 }
 #GamePage .logoContainer img {
   width: 100%;
   position: relative;
   left: 5px;
+}
+#GamePage .mask {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 99;
+  background-color: #fccd01;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.5s all linear;
+}
+#GamePage .hideMask {
+  width: 0.01vw;
+  height: 0.01vh;
 }

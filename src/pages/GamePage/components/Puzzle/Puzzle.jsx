@@ -193,6 +193,23 @@ export default class Puzzle extends Component {
         this.randomList()
       })  
     })
+
+    // 模式切换
+    PubSub.subscribe('modeChange', (msg, e) => {
+      this.setState({
+        isLoad: true,
+        itemWidth: (this.state.containWidth - (e - 1) * this.state.gap) / e,
+        mode: e
+      }, () => {
+        const image = new Image()
+        image.src = this.state.imageUrl
+        image.crossOrigin = '';
+        image.onload = () => {
+          let size = image.width > image.height ? image.height : image.width
+          this.computedCanvas(image, size)
+        }
+      })
+    })
   }
 
   render() {

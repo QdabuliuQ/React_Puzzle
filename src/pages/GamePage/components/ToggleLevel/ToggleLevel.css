@@ -1,0 +1,24 @@
+#ToggleLevel {
+  margin-top: 2vh;
+  position: relative;
+}
+#ToggleLevel .btnItem {
+  text-align: center;
+  width: 100%;
+}
+#ToggleLevel .btnItem img {
+  width: 39%;
+}
+#ToggleLevel .arrowIcon {
+  position: absolute;
+  z-index: 2;
+  width: 15%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#ToggleLevel .leftIcon {
+  left: 10px;
+}
+#ToggleLevel .rightIcon {
+  right: 10px;
+}
