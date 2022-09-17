@@ -11,22 +11,16 @@ export default class BtnList extends Component {
     toggle: null
   }
 
-  easyMode = () => {
+  selectMode = () => {
     this.setState({
       isClick: true
     })
   }
 
-  complexMode = () => {
-    this.setState({
-      toggle: '/ComplexPage'
-    })
-  }
-
   // 动画结束回调
-  transitionEndEvent = () => {
+  transitionEndEvent = (path) => {
     this.setState({
-      toggle: '/GamePage'
+      toggle: path
     })
   }
 
@@ -49,7 +43,7 @@ export default class BtnList extends Component {
               <img className='title' src={require('assets/images/title.png')} alt="" />
             </div>
           </ReactCSSTransitionGroup>
-        <div onTransitionEnd={this.transitionEndEvent} className={[isClick?'activeBtnItem':'', 'btnItem', 'easyBtn'].join(' ')}>
+        <div onTransitionEnd={() => this.transitionEndEvent('/GamePage')} className={[isClick?'activeBtnItem':'', 'btnItem', 'easyBtn'].join(' ')}>
           <ReactCSSTransitionGroup
             transitionEnter={true}
             transitionLeave={true}
@@ -58,11 +52,11 @@ export default class BtnList extends Component {
             transitionName="animated"
           >
             <div className="animate__animated animate__bounceInLeft animate__slow" >
-              <img onClick={this.easyMode} src={require('assets/images/easy.png')} alt="" />
+              <img onClick={this.selectMode} src={require('assets/images/easy.png')} alt="" />
             </div>
           </ReactCSSTransitionGroup>
         </div>
-        <div className='btnItem easyBtn'>
+        <div onTransitionEnd={() => this.transitionEndEvent('/ComplexPage')} className={[isClick?'activeBtnItem':'', 'btnItem', 'easyBtn'].join(' ')}>
           <ReactCSSTransitionGroup
             transitionEnter={true}
             transitionLeave={true}
@@ -71,7 +65,7 @@ export default class BtnList extends Component {
             transitionName="animated"
           >
             <div className="animate__animated animate__bounceInRight animate__slow" >
-              <img onClick={this.complexMode} src={require('assets/images/complex.png')} alt="" />
+              <img onClick={this.selectMode} src={require('assets/images/complex.png')} alt="" />
             </div>
           </ReactCSSTransitionGroup>
         </div>

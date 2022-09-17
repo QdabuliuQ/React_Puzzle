@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import { SpinLoading, Toast } from 'antd-mobile'
 import PubSub from 'pubsub-js'
+import download from "utils/download";
 import { getRandomImage } from "network/index";
 import PuzzleItem from "components/PuzzleItem/PuzzleItem";
 import "./Puzzle.less"
 
+let token1;
+let token2;
+let token3;
+let token4;
 export default class Puzzle extends Component {
   state = {
     isLoad: true,
@@ -134,31 +139,6 @@ export default class Puzzle extends Component {
     PubSub.publish('success')
   }
 
-  downloadIamge = (imgsrc, name) => {//下载图片地址和图片名
-    let image = new Image();
-    // 解决跨域 Canvas 污染问题
-    image.setAttribute("crossOrigin", "anonymous");
-    image.onload = function() {
-      let canvas = document.createElement("canvas");
-      canvas.width = image.width;
-      canvas.height = image.height;
-      let context = canvas.getContext("2d");
-      context.drawImage(image, 0, 0, image.width, image.height);
-      let url = canvas.toDataURL("image/png"); //得到图片的base64编码数据
-      let a = document.createElement("a"); // 生成一个a元素
-      let event = new MouseEvent("click"); // 创建一个单击事件
-      a.download = name || "photo"; // 设置图片名称
-      a.href = url; // 将生成的URL设置为a.href属性
-      a.dispatchEvent(event); // 触发a的单击事件
-      Toast.clear()
-      Toast.show({
-        icon: 'success',
-        content: '下载成功',
-      })
-    };
-    image.src = imgsrc;
-  }
-
   componentDidMount() {
     let width = (document.documentElement.clientWidth - 30) / this.state.mode
     this.setState({
@@ -168,7 +148,7 @@ export default class Puzzle extends Component {
     this.getImageUrl()
     
     // 替换图片
-    PubSub.subscribe('replace', () => {
+    token1 = PubSub.subscribe('replace', () => {
       this.setState({
         isLoad: true
       }, () => {
@@ -177,16 +157,12 @@ export default class Puzzle extends Component {
     })  
     
     // 保存图片
-    PubSub.subscribe('save', () => {
-      Toast.show({
-        icon: 'loading',
-        content: '下载中',
-      })
-      this.downloadIamge(this.state.imageUrl, 'image')
+    token2 = PubSub.subscribe('save', () => {
+      download(this.state.imageUrl, 'image')
     })
 
     // 重新排序图片
-    PubSub.subscribe('rank', () => {
+    token3 = PubSub.subscribe('rank', () => {
       this.setState({
         isLoad: true
       }, () => {
@@ -195,7 +171,7 @@ export default class Puzzle extends Component {
     })
 
     // 模式切换
-    PubSub.subscribe('modeChange', (msg, e) => {
+    token4 = PubSub.subscribe('modeChange', (msg, e) => {
       this.setState({
         isLoad: true,
         itemWidth: (this.state.containWidth - (e - 1) * this.state.gap) / e,
@@ -210,6 +186,13 @@ export default class Puzzle extends Component {
         }
       })
     })
+  }
+
+  componentWillUnmount() {
+    PubSub.unsubscribe(token1)
+    PubSub.unsubscribe(token2)
+    PubSub.unsubscribe(token3)
+    PubSub.unsubscribe(token4)
   }
 
   render() {

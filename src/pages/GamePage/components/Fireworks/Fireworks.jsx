@@ -4,6 +4,7 @@ import PubSub from 'pubsub-js'
 import "./Fireworks.less"
 import ScatterFlowers from "utils/success";
 
+let token;
 export default class Fireworks extends Component {
   state = {
     isShow: false,
@@ -42,7 +43,7 @@ export default class Fireworks extends Component {
   }
 
   componentDidMount() {
-    PubSub.subscribe('success', () => {
+    token = PubSub.subscribe('success', () => {
       this.setState({
         visible: true
       }, () => {
@@ -55,11 +56,14 @@ export default class Fireworks extends Component {
     })
   }
 
+  componentWillUnmount() {
+    PubSub.unsubscribe(token)
+  }
+
   render() {
-    const { isShow, audioRef, visible } = this.state
+    const { audioRef, visible } = this.state
 
     return (
-      // <div style={{zIndex: isShow ? 5 : -1}} id='Fireworks'>
       <div id='Fireworks'>
         <Mask
           visible={visible}

@@ -19,10 +19,10 @@
   position: relative;
   z-index: 4;
   text-align: center;
-  margin-top: 5vh;
+  margin-top: 7vh;
 }
 #GamePage .logoContainer img {
-  width: 100%;
+  width: 90%;
   position: relative;
   left: 5px;
 }
