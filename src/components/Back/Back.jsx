@@ -7,6 +7,12 @@ export default class Back extends Component {
   state = {
     back: false
   }
+  backEvent = () => {
+    PubSub.publish('clickItem')
+    this.setState({
+      back: true
+    })
+  }
 
   render() {
     const {back} = this.state
@@ -16,12 +22,7 @@ export default class Back extends Component {
         {
           back && <Navigate to={-1} />
         }
-        <img onClick={() => {
-          PubSub.publish('clickItem')
-          this.setState({
-            back: true
-          })
-        }} src={require('assets/images/back.png')} alt="" />
+        <img onClick={this.backEvent} src={require('assets/images/back.png')} alt="" />
       </div>
     )
   }
