@@ -151,7 +151,6 @@ export default class Puzzle extends Component {
   }
 
   touchEndEvent = (e) => {
-    e.preventDefault()
     let mode = this.state.mode * this.state.mode
     let endx, endy;
     endx = e.changedTouches[0].pageX;
@@ -223,6 +222,10 @@ export default class Puzzle extends Component {
   };
 
   componentDidMount() {
+    document.body.addEventListener('touchmove', function (e) {
+      e.preventDefault()
+    }, { passive: false })
+
     let width = (document.documentElement.clientWidth - 30) / this.state.mode
     this.setState({
       moveIndex: this.state.mode * this.state.mode,
