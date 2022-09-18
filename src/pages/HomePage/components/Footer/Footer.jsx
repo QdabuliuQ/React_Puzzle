@@ -21,7 +21,6 @@ export default class Footer extends Component {
           <p className='tip'>点个star再走吧</p>
         </div>
       </ReactCSSTransitionGroup>
-
     </div>
   )
 

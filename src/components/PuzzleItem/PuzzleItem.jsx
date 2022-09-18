@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import PubSub from 'pubsub-js'
 import "./PuzzleItem.less";
 
 export default class PuzzleItem extends Component {
-  
   clickEvent = () => {
-    this.props.clickEvent(this.props.index)
+    if (this.props.clickEvent) {
+      PubSub.publish('clickItem')
+      this.props.clickEvent(this.props.index)
+    }
   }
   render() {
     const {i, image, size, left, top, index, activeIndex} = this.props

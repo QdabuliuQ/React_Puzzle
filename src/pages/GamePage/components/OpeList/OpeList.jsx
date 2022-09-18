@@ -4,12 +4,15 @@ import "./OpeList.less"
 
 export default class OpeList extends Component {
   replaceEvent = () => {
+    PubSub.publish('clickItem')
     PubSub.publish('replace')
   }
   saveEvent = () => {
+    PubSub.publish('clickItem')
     PubSub.publish('save')
   }
   rankEvent = () => {
+    PubSub.publish('clickItem')
     PubSub.publish('rank')
   }
 

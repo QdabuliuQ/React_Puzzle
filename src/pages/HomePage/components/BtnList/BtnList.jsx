@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PubSub from 'pubsub-js'
 import { Navigate } from "react-router-dom";
 import "animate.css";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
@@ -11,14 +12,22 @@ export default class BtnList extends Component {
     toggle: null
   }
 
-  selectMode = () => {
+  selectMode = (path) => {
+    PubSub.publish('clickItem')
     this.setState({
       isClick: true
+    }, () => {
+      setTimeout(() => {
+        this.setState({
+          toggle: path
+        })
+      }, 700);
     })
   }
 
   // 动画结束回调
   transitionEndEvent = (path) => {
+    console.log(path);
     this.setState({
       toggle: path
     })
@@ -43,7 +52,7 @@ export default class BtnList extends Component {
               <img className='title' src={require('assets/images/title.png')} alt="" />
             </div>
           </ReactCSSTransitionGroup>
-        <div onTransitionEnd={() => this.transitionEndEvent('/GamePage')} className={[isClick?'activeBtnItem':'', 'btnItem', 'easyBtn'].join(' ')}>
+        <div className={[isClick?'activeBtnItem':'', 'btnItem', 'easyBtn'].join(' ')}>
           <ReactCSSTransitionGroup
             transitionEnter={true}
             transitionLeave={true}
@@ -52,11 +61,11 @@ export default class BtnList extends Component {
             transitionName="animated"
           >
             <div className="animate__animated animate__bounceInLeft animate__slow" >
-              <img onClick={this.selectMode} src={require('assets/images/easy.png')} alt="" />
+              <img onClick={() => this.selectMode('/GamePage')} src={require('assets/images/easy.png')} alt="" />
             </div>
           </ReactCSSTransitionGroup>
         </div>
-        <div onTransitionEnd={() => this.transitionEndEvent('/ComplexPage')} className={[isClick?'activeBtnItem':'', 'btnItem', 'easyBtn'].join(' ')}>
+        <div className={[isClick?'activeBtnItem':'', 'btnItem', 'easyBtn'].join(' ')}>
           <ReactCSSTransitionGroup
             transitionEnter={true}
             transitionLeave={true}
@@ -65,7 +74,7 @@ export default class BtnList extends Component {
             transitionName="animated"
           >
             <div className="animate__animated animate__bounceInRight animate__slow" >
-              <img onClick={this.selectMode} src={require('assets/images/complex.png')} alt="" />
+              <img onClick={() => this.selectMode('/ComplexPage')} src={require('assets/images/complex.png')} alt="" />
             </div>
           </ReactCSSTransitionGroup>
         </div>

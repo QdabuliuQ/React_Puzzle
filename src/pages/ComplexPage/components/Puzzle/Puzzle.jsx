@@ -105,7 +105,6 @@ export default class Puzzle extends Component {
 
   // 计算坐标
   computedAxis = (index, propertyName_x = 'left', propertyName_y = 'top') => {
-    console.log(index, this.state.mode, '---');
     let left;
     let top;
     if (index == 0) {

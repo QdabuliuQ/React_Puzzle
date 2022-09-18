@@ -35,7 +35,10 @@ export default class ToggleLevel extends Component {
 
     return (
       <div id='ToggleLevel'>
-        <img onClick={() => swiperRef.current.swipePrev()} className='arrowIcon leftIcon' src={require('assets/images/left.png')} alt="" />
+        <img onClick={() => {
+          PubSub.publish('clickItem')
+          swiperRef.current.swipePrev()
+        }} className='arrowIcon leftIcon' src={require('assets/images/left.png')} alt="" />
         <Swiper onIndexChange={this.swiperChange} ref={swiperRef} indicator={() => null} slideSize={70} trackOffset={15} loop stuckAtBoundary={false}>
           {
             modeList.map(item => (
@@ -48,7 +51,10 @@ export default class ToggleLevel extends Component {
             
           }
         </Swiper>
-        <img onClick={() => swiperRef.current.swipeNext()} className='arrowIcon rightIcon' src={require('assets/images/right.png')} alt="" />
+        <img onClick={() => {
+          PubSub.publish('clickItem')
+          swiperRef.current.swipeNext()
+        }} className='arrowIcon rightIcon' src={require('assets/images/right.png')} alt="" />
       </div>
     )
   }
