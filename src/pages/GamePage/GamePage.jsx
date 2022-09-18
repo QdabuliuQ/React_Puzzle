@@ -31,8 +31,10 @@ export default class GamePage extends Component {
         </div>
         <Back />
         <Puzzle />
-        <OpeList />
-        <ToggleLevel />
+        <div className='bottomBox'>
+          <OpeList />
+          <ToggleLevel />
+        </div>
         <Fireworks />
       </div>
     )

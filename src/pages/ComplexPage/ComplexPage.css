@@ -16,3 +16,7 @@
   position: relative;
   left: 5px;
 }
+#ComplexPage .bottomBox {
+  position: absolute;
+  bottom: 5vh;
+}

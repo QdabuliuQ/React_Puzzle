@@ -17,8 +17,10 @@ export default class ComplexPage extends Component {
           <img src={require('assets/images/logo.png')} alt="" />
         </div>
         <Puzzle />
-        <OpeList />
-        <ToggleLevel />
+        <div className='bottomBox'>
+          <OpeList />
+          <ToggleLevel />
+        </div>
         <Fireworks />
       </div>
     )

@@ -41,3 +41,7 @@
   width: 0.01vw;
   height: 0.01vh;
 }
+#GamePage .bottomBox {
+  position: absolute;
+  bottom: 5vh;
+}

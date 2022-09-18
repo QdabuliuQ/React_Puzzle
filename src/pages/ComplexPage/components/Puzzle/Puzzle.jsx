@@ -151,6 +151,7 @@ export default class Puzzle extends Component {
   }
 
   touchEndEvent = (e) => {
+    e.preventDefault()
     let mode = this.state.mode * this.state.mode
     let endx, endy;
     endx = e.changedTouches[0].pageX;

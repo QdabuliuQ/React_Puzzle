@@ -53,8 +53,19 @@ export default class Puzzle extends Component {
 
   // 获取图片url
   getImageUrl = () => {
-    getRandomImage().then(res => {
-      this.state.imageUrl = res.replace('https://tuapi.eees.cc', '/api1')
+    // getRandomImage().then(res => {
+    //   this.state.imageUrl = res.replace('https://tuapi.eees.cc', '/api1')
+    //   const image = new Image()
+    //   image.src = this.state.imageUrl
+    //   image.crossOrigin = '';
+    //   image.onload = () => {
+    //     let size = image.width > image.height ? image.height : image.width
+    //     this.computedCanvas(image, size)
+    //   }
+    // })
+    this.setState({
+      imageUrl: require('assets/images/coder.jpg')
+    }, () => {
       const image = new Image()
       image.src = this.state.imageUrl
       image.crossOrigin = '';
